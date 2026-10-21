@@ -5,5 +5,5 @@ resource "google_artifact_registry_repository" "docker_repo" {
   description   = "Repository Docker per il servizio Cloud Run"
   format        = "DOCKER"
 
-  depends_on = [google_project_service.enabled_apis]
+  depends_on = [google_project_service.apis]
 }
