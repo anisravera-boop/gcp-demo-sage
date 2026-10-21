@@ -1,6 +1,6 @@
 output "cloud_run_url" {
   description = "L'URL pubblico generato per il servizio Cloud Run"
-  value       = google_cloud_run_v2_service.default.uri
+  value       = google_cloud_run_v2_service.sage_backend.uri
 }
 
 output "artifact_registry_url" {
