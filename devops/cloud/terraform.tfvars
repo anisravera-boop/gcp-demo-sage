@@ -3,7 +3,7 @@
 
 project_id = "its-ict-sage-csp26"
 region     = "europe-west6"
-resource-prefix = "its-ict-sage-andrea-sassi"
+resource_prefix = "its-ict-sage-anis-ravera"
 
 # Progetto condiviso tra più persone: decommenta e usa il tuo prefisso. Tutte le risorse
 # prenderanno questo prefisso nel nome (e project_id sopra sarà il progetto condiviso).
