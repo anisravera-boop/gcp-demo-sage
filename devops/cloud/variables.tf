@@ -12,3 +12,9 @@ variable "resource_prefix" {
   description = "Prefisso per i nomi delle risorse"
   type        = string
 }
+
+variable "container_image" {
+  description = "us-docker.pkg.dev/cloudrun/container/hello"
+  type        = string
+}
+
