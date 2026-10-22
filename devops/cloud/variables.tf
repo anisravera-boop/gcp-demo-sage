@@ -16,5 +16,6 @@ variable "resource_prefix" {
 variable "container_image" {
   description = "us-docker.pkg.dev/cloudrun/container/hello"
   type        = string
+  default     = "us-docker.pkg.dev/cloudrun/container/hello"
 }
 
