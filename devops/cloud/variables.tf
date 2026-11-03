@@ -4,18 +4,11 @@ variable "project_id" {
 }
 
 variable "region" {
-  description = "Regione GCP per le risorse"
+  description = "Regione GCP in cui creare le risorse"
   type        = string
 }
 
 variable "resource_prefix" {
-  description = "Prefisso per i nomi delle risorse"
+  description = "Prefisso usato per i nomi delle risorse"
   type        = string
 }
-
-variable "container_image" {
-  description = "us-docker.pkg.dev/cloudrun/container/hello"
-  type        = string
-  default     = "us-docker.pkg.dev/cloudrun/container/hello"
-}
-
