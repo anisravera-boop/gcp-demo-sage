@@ -16,7 +16,7 @@ def find_nearest_chunks(embedding: list[float]) -> list[Chunk]:
     config = get_app_config()
     collection = get_firestore_client().collection(config.firestore_collection)
 
-    query = collection.find_nearest( 
+    query = collection.find_nearest(
         vector_field="embedding",
         query_vector=Vector(embedding),
         distance_measure=DistanceMeasure.COSINE,

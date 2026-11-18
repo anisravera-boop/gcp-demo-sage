@@ -27,6 +27,10 @@ class AppConfig(BaseSettings):
     embedding_model: str = "text-embedding-004"
     embedding_dimension: int = 768
 
+    # Cloud Storage (runtime instructions)
+    instructions_bucket: str = ""
+    instructions_object: str = "istruzioni.md"
+
     # BigQuery
     bq_dataset: str = "sage_analytics"
     bq_table: str = "question_log"
@@ -40,11 +44,13 @@ class AppConfig(BaseSettings):
 
         `bq_dataset` is the base name; after validation it is always the final dataset id.
         """
-        if not self.resource_prefix:
-            return self
-        self.firestore_database = self.resource_prefix
-        # BigQuery dataset ids allow only letters, digits and underscores.
-        self.bq_dataset = f"{self.resource_prefix.replace('-', '_')}_{self.bq_dataset}"
+        if self.resource_prefix:
+            self.firestore_database = self.resource_prefix
+            # BigQuery dataset ids allow only letters, digits and underscores.
+            self.bq_dataset = f"{self.resource_prefix.replace('-', '_')}_{self.bq_dataset}"
+        if not self.instructions_bucket:
+            base = self.resource_prefix or self.project_id
+            self.instructions_bucket = f"{base}-instructions"
         return self
 
 

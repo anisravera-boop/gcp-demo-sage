@@ -1,4 +1,6 @@
 locals {
+  resource_prefix_effective = var.resource_prefix != "" ? var.resource_prefix : var.project_id
+
   # Cloud Run, Artifact Registry, service account: "<prefisso>-<app_name>".
   app_name = "${var.resource_prefix}-${var.app_name}"
 

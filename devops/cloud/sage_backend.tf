@@ -68,6 +68,10 @@ resource "google_cloud_run_v2_service" "sage_backend" {
         name  = "SAGE_RESOURCE_PREFIX"
         value = var.resource_prefix
       }
+      env {
+        name  = "SAGE_INSTRUCTIONS_BUCKET"
+        value = google_storage_bucket.sage_instructions.name
+      }
     }
   }
 
@@ -83,6 +87,8 @@ resource "google_cloud_run_v2_service" "sage_backend" {
   depends_on = [
     google_project_service.apis,
     google_project_iam_member.sage_run_vertex,
+    google_project_iam_member.sage_run_firestore,
+    google_storage_bucket_iam_member.sage_run_instructions_viewer,
   ]
 }
 
@@ -99,6 +105,13 @@ resource "google_service_account" "sage_run" {
 resource "google_project_iam_member" "sage_run_vertex" {
   project = var.project_id
   role    = "roles/aiplatform.user"
+  member  = "serviceAccount:${google_service_account.sage_run.email}"
+}
+
+# Permesso di leggere/scrivere i chunk vettoriali su Firestore.
+resource "google_project_iam_member" "sage_run_firestore" {
+  project = var.project_id
+  role    = "roles/datastore.user"
   member  = "serviceAccount:${google_service_account.sage_run.email}"
 }
 

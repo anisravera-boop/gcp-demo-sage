@@ -21,6 +21,4 @@ log = logging.getLogger(__name__)
 
 
 def log_question(question: str, chunks: list[Chunk], latency_ms: int) -> None:
-    log.info(
-        "[MOCK] question=%r sources=%d latency_ms=%d", question, len(chunks), latency_ms
-    )
+    log.info("[MOCK] question=%r sources=%d latency_ms=%d", question, len(chunks), latency_ms)
